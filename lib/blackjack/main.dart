@@ -1,54 +1,54 @@
 import 'dart:math';
 
-class Card{
+import 'package:flutter/cupertino.dart';
+
+class CardBj {
   late String name;
   late int value;
-  late String imagePath;
+  late Image image;
 
-  Card(this.name, this.value, this.imagePath){}
-
+  CardBj(this.name, this.value, this.image);
 }
 
-
-class Hand{
-  late List<Card> deck;
-  late List<Card> cards;
+class Hand {
+  late List<CardBj> deck;
+  late List<CardBj> cards;
   late int bet;
   late bool double;
 
   bool canAdd = true;
   bool canDouble = true;
 
-  Hand(this.cards, this.deck, this.bet){}
+  Hand(this.cards, this.deck, this.bet);
 
-  void addCard(){
-    if (cards.length == 1){
+  void addCardBj() {
+    if (cards.length == 1) {
       canDouble = false;
     }
 
-    if (canAdd){
-      Card card = deck[Random().nextInt(deck.length)];
+    if (canAdd) {
+      CardBj card = deck[Random().nextInt(deck.length)];
       deck.remove(card);
       cards.add(card);
     }
 
-    if (this.calculateAmount() > 21){
+    if (calculateAmount() > 21) {
       canAdd = false;
     }
   }
 
-  int calculateAmount(){
+  int calculateAmount() {
     int amount = 0;
     int acesNum = 0;
 
-    for (var element in cards){
+    for (var element in cards) {
       amount += element.value;
-      if (element.value == 11){
+      if (element.value == 11) {
         acesNum += 1;
       }
     }
 
-    while (amount > 21 && acesNum > 0){
+    while (amount > 21 && acesNum > 0) {
       amount -= 10;
       acesNum -= 1;
     }
@@ -56,111 +56,103 @@ class Hand{
     return amount;
   }
 
-  void doubleBet(){
-    if (canDouble){
+  void doubleBet() {
+    if (canDouble) {
       bet += bet;
-      addCard();
+      addCardBj();
     }
   }
 
-  void split(Hand secondHand){
+  void split(Hand secondHand) {
     //сплит можно сделать 3 раза. надо добавить ограничение.
-    if (cards.length == 2){
+    if (cards.length == 2) {
       secondHand = Hand([cards[0]], deck, bet);
       cards.removeAt(0);
     }
   }
 
+  List<Widget> getImages(){
+    List<Widget> images = [];
+    for(var element in cards){
+      images.add(
+        SizedBox(
+          width: 90,
+          height: 125,
+          child: element.image,
+        )
+
+      );
+    }
+    return images;
+  }
 }
 
-
-class Table{
+class TableBj {
   late Hand dealerHand;
   late Hand mainHand;
   late Hand? splittedHand;
 
-
-  late List<Card> deck;
+  late List<CardBj> deck;
   late int bet;
 
-  Table(this.deck, this.bet){
+  TableBj(this.deck, this.bet) {
     dealerHand = Hand([], deck, bet);
     mainHand = Hand([], deck, bet);
     splittedHand = null;
   }
 
-  int dealerTurn(){
-    while (dealerHand.calculateAmount() < 17){
-      dealerHand.addCard();
+  int dealerTurn() {
+    while (dealerHand.calculateAmount() < 17) {
+      dealerHand.addCardBj();
     }
     return dealerHand.calculateAmount();
   }
 
-  String checkWin(Hand hand){
-    int player_amount = hand.calculateAmount();
-    int dealer_amount = dealerHand.calculateAmount();
-    if (player_amount <= 21 &&
-        (player_amount > dealer_amount || dealer_amount > 21)){
+  String checkWin(Hand hand) {
+    int playerAmount = hand.calculateAmount();
+    int dealerAmount = dealerHand.calculateAmount();
+    if (playerAmount <= 21 &&
+        (playerAmount > dealerAmount || dealerAmount > 21)) {
       return "win";
     }
-    if (dealer_amount == player_amount){
+    if (dealerAmount == playerAmount) {
       return "push";
     }
     return "lose";
   }
 
-  int result(){
+  int result() {
     int totalBet = 0;
-    if (splittedHand != null){
+    if (splittedHand != null) {
       String res = checkWin(splittedHand!);
-      if (res == "win"){
+      if (res == "win") {
         totalBet += splittedHand!.bet;
-      }else if(res == "lose"){
+      } else if (res == "lose") {
         totalBet -= splittedHand!.bet;
       }
     }
 
     String res = checkWin(mainHand);
-    if (res == "win"){
+    if (res == "win") {
       totalBet += mainHand.bet;
-    }else if (res == "lose"){
+    } else if (res == "lose") {
       totalBet -= mainHand.bet;
     }
 
-
     return totalBet;
   }
-
-
-
 }
 
-
-main(){
-  //Трефы — clubs Бубны — diamonds Червы — hearts Пики — spades
-  //A - Ace == Туз
-  List<Card> testCards = [
-    Card("8H",8, ""),
-    Card("AH", 11, ""),
-
-  ];
-  List<Card> full_deck = [];
-  for (var nominal in [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]){
-    for (var suit in ["C", "D", "H", "S"]){
+List<CardBj> getFullDeck() {
+  List<CardBj> fullDeck = [];
+  for (var nominal in [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]) {
+    for (var suit in ["C", "D", "H", "S"]) {
       int amount = 10;
-      if (nominal is int){
+      if (nominal is int) {
         amount = nominal;
       }
-      full_deck.add(Card("$nominal$suit", amount, ""));
+      fullDeck.add(CardBj("$nominal$suit", amount, Image.asset("assets/images/cards/standard/$nominal$suit.png")));
     }
   }
-
-  Hand h = Hand(testCards, full_deck, 1);
-  Table t = Table(full_deck, 1);
-
-  t.mainHand = h;
-  t.dealerTurn();
-  print(h.calculateAmount());
-  print(t.dealerHand.calculateAmount());
-  print(t.result());
+  return fullDeck;
 }
