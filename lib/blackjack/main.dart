@@ -1,13 +1,15 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+
+
+
 
 class CardBj {
-  late String name;
-  late int value;
-  late Image image;
+  final String name;
+  final int value;
+  final String imagePath;
 
-  CardBj(this.name, this.value, this.image);
+  const CardBj(this.name, this.value, this.imagePath);
 }
 
 class Hand {
@@ -70,21 +72,6 @@ class Hand {
       cards.removeAt(0);
     }
   }
-
-  List<Widget> getImages(){
-    List<Widget> images = [];
-    for(var element in cards){
-      images.add(
-        SizedBox(
-          width: 90,
-          height: 125,
-          child: element.image,
-        )
-
-      );
-    }
-    return images;
-  }
 }
 
 class TableBj {
@@ -102,6 +89,8 @@ class TableBj {
   }
 
   int dealerTurn() {
+    mainHand.canAdd = false;
+    mainHand.canDouble = false;
     while (dealerHand.calculateAmount() < 17) {
       dealerHand.addCardBj();
     }
@@ -141,6 +130,15 @@ class TableBj {
 
     return totalBet;
   }
+
+  void reset(bool newDeck){
+    if (newDeck){
+      deck = getFullDeck();
+    }
+    mainHand = Hand([], deck, bet);
+    dealerHand = Hand([], deck, bet);
+    splittedHand = null;
+  }
 }
 
 List<CardBj> getFullDeck() {
@@ -151,8 +149,24 @@ List<CardBj> getFullDeck() {
       if (nominal is int) {
         amount = nominal;
       }
-      fullDeck.add(CardBj("$nominal$suit", amount, Image.asset("assets/images/cards/standard/$nominal$suit.png")));
+
+      if (nominal == "A"){
+        amount = 11;
+      }
+
+      fullDeck.add(CardBj("$nominal$suit", amount, "assets/images/cards/standard/$nominal$suit.png"));
     }
   }
   return fullDeck;
+}
+
+main(){
+
+  TableBj t = TableBj(getFullDeck(), 1);
+  t.mainHand.cards = [
+    const CardBj("", 10, ""),
+    const CardBj("", 11, "")
+  ];
+  print(t.mainHand.calculateAmount());
+
 }
