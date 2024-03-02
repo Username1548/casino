@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/main.dart';
 import '../../internal/methods.dart';
-
+import '../../internal/provider.dart';
 
 
 class BlackJackResultScreen extends ConsumerWidget {

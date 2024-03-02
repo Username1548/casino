@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../blackjack/presentation/screens/bj_bet.dart';
-import '../blackjack/presentation/screens/bj_game.dart';
-import '../blackjack/presentation/screens/bj_result.dart';
+
+import '../feature/blackjack/presentation/screens/bj_bet.dart';
+import '../feature/blackjack/presentation/screens/bj_game.dart';
+import '../feature/blackjack/presentation/screens/bj_result.dart';
+
 
 
 class MyApp extends StatelessWidget {

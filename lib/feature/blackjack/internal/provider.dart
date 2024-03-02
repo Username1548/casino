@@ -4,6 +4,16 @@ import '../domain/models/table.dart';
 import 'methods.dart';
 
 
+final tableBjProvider = StateNotifierProvider<TableBjNotifier, TableBj>((ref) =>
+    TableBjNotifier(
+        TableBj(
+            getFullDeck(), 1, Hand([], getFullDeck(), 1),
+            Hand([], getFullDeck(), 1),
+            false)
+    )
+);
+
+
 class TableBjNotifier extends StateNotifier<TableBj>{
   TableBjNotifier(super.state);
 

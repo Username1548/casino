@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/main.dart';
 import '../../internal/methods.dart';
+import '../../internal/provider.dart';
+
 
 class BlackjackGameScreen extends ConsumerWidget {
   const BlackjackGameScreen({super.key});
@@ -9,9 +10,6 @@ class BlackjackGameScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final table = ref.watch(tableBjProvider);
-
-
-
 
     return Scaffold(
         body: Padding(
