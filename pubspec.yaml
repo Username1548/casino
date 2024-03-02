@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_riverpod:
+  flutter_riverpod: ^2.4.10
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,6 +62,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/chips/standard/
     - assets/images/cards/standard/2C.png
     - assets/images/cards/standard/2D.png
     - assets/images/cards/standard/2H.png
