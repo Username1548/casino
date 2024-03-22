@@ -11,16 +11,16 @@ class TableBj {
 
   TableBj(this.deck, this.bet, this.mainHand, this.dealerHand, this.isDouble);
 
-  TableBj copyWith({deck, bet, mainHand, dealerHand, isDouble}){
+  TableBj copyWith({deck, bet, mainHand, dealerHand, isDouble}) {
     return TableBj(deck, bet, mainHand, dealerHand, isDouble);
   }
+
   void dealerTurn() {
     mainHand.canAdd = false;
     mainHand.canDouble = false;
     while (dealerHand.calculateAmount() < 17) {
       dealerHand.addCardBj();
     }
-
   }
 
   String checkWin(Hand hand) {
@@ -43,7 +43,7 @@ class TableBj {
 
     String res = checkWin(mainHand);
 
-    if (checkBj(mainHand)){
+    if (checkBj(mainHand)) {
       totalBet += mainHand.bet * 2.5;
     } else if (res == "win") {
       totalBet += mainHand.bet;
@@ -51,18 +51,17 @@ class TableBj {
       totalBet -= mainHand.bet;
     }
 
-    if (isDouble){
+    if (isDouble) {
       totalBet *= 2;
     }
 
     return totalBet.round();
   }
 
-  bool checkBj(Hand hand){
-    if (hand.cards.length == 2 && hand.calculateAmount() == 21){
+  bool checkBj(Hand hand) {
+    if (hand.cards.length == 2 && hand.calculateAmount() == 21) {
       return true;
     }
     return false;
   }
-
 }

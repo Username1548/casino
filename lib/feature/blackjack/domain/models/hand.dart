@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'card.dart';
 
-
 class Hand {
   late List<CardBj> deck;
   late List<CardBj> cards;
@@ -13,9 +12,10 @@ class Hand {
 
   Hand(this.cards, this.deck, this.bet);
 
-  Hand copyWith({cards, deck, bet}){
+  Hand copyWith({cards, deck, bet}) {
     return Hand(cards, deck, bet);
   }
+
   void addCardBj() {
     if (cards.length == 2) {
       canDouble = false;
@@ -50,8 +50,4 @@ class Hand {
 
     return amount;
   }
-
-
-
-
 }
