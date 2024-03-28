@@ -1,5 +1,5 @@
 name: casino
-description: "A new Flutter project."
+description: 'A new Flutter project.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -30,7 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_riverpod: ^2.4.10
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  dio: ^5.4.1
+  shared_preferences: ^2.2.2
+  animated_snack_bar: ^0.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,23 +57,70 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+  assets:
+    - assets/images/chips/standard/
+    - assets/images/cards/standard/2C.png
+    - assets/images/cards/standard/2D.png
+    - assets/images/cards/standard/2H.png
+    - assets/images/cards/standard/2S.png
+    - assets/images/cards/standard/3C.png
+    - assets/images/cards/standard/3D.png
+    - assets/images/cards/standard/3H.png
+    - assets/images/cards/standard/3S.png
+    - assets/images/cards/standard/4C.png
+    - assets/images/cards/standard/4D.png
+    - assets/images/cards/standard/4H.png
+    - assets/images/cards/standard/4S.png
+    - assets/images/cards/standard/5C.png
+    - assets/images/cards/standard/5D.png
+    - assets/images/cards/standard/5H.png
+    - assets/images/cards/standard/5S.png
+    - assets/images/cards/standard/6C.png
+    - assets/images/cards/standard/6D.png
+    - assets/images/cards/standard/6H.png
+    - assets/images/cards/standard/6S.png
+    - assets/images/cards/standard/7C.png
+    - assets/images/cards/standard/7D.png
+    - assets/images/cards/standard/7H.png
+    - assets/images/cards/standard/7S.png
+    - assets/images/cards/standard/8C.png
+    - assets/images/cards/standard/8D.png
+    - assets/images/cards/standard/8H.png
+    - assets/images/cards/standard/8S.png
+    - assets/images/cards/standard/9C.png
+    - assets/images/cards/standard/9D.png
+    - assets/images/cards/standard/9H.png
+    - assets/images/cards/standard/9S.png
+    - assets/images/cards/standard/10C.png
+    - assets/images/cards/standard/10D.png
+    - assets/images/cards/standard/10H.png
+    - assets/images/cards/standard/10S.png
+    - assets/images/cards/standard/JC.png
+    - assets/images/cards/standard/JD.png
+    - assets/images/cards/standard/JH.png
+    - assets/images/cards/standard/JS.png
+    - assets/images/cards/standard/QC.png
+    - assets/images/cards/standard/QD.png
+    - assets/images/cards/standard/QH.png
+    - assets/images/cards/standard/QS.png
+    - assets/images/cards/standard/KC.png
+    - assets/images/cards/standard/KD.png
+    - assets/images/cards/standard/KH.png
+    - assets/images/cards/standard/KS.png
+    - assets/images/cards/standard/AC.png
+    - assets/images/cards/standard/AD.png
+    - assets/images/cards/standard/AH.png
+    - assets/images/cards/standard/AS.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
