@@ -1,33 +1,31 @@
-import 'package:casino/feature/user_managment/data/models/user_model.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
   final String username;
   final String password;
+  final String token;
+  final bool isRegistred;
+  final String messege;
 
-  const UserEntity({
-    required this.username,
-    required this.password,
-  });
-
-  factory UserEntity.fromEntity(UserModel userEntity) =>
-      UserEntity(username: userEntity.username, password: userEntity.password);
-
-  UserModel toEntity() => UserModel(username: username, password: password);
+  const UserEntity(this.username, this.password, this.token, this.isRegistred, this.messege);
 
   UserEntity copyWith({
     String? username,
     String? password,
+    String? token,
+    bool? isRegistred,
+    String? messege
   }) {
     return UserEntity(
-      username: username ?? this.username,
-      password: password ?? this.password,
+      username ?? this.username,
+      password ?? this.password,
+      token ?? this.token,
+      isRegistred ?? this.isRegistred,
+      messege ?? this.messege
     );
   }
 
   @override
-  bool get stringify => true;
-
-  @override
-  List<Object> get props => [username, password];
+  List<Object> get props => [username, password, token, isRegistred, messege];
 }
