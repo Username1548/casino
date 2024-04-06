@@ -1,6 +1,6 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:casino/feature/main/presentation/pages/main_page.dart';
-import 'package:casino/feature/user_managment/domain/entities/user_entity.dart';
+import 'package:casino/feature/main/pages/main_page.dart';
+import 'package:casino/feature/user_managment/presentation/providers/loading_provider.dart';
 import 'package:casino/feature/user_managment/presentation/providers/user_state_provider.dart';
 import 'package:casino/feature/user_managment/presentation/widgets/sign_in_form.dart';
 import 'package:casino/feature/user_managment/presentation/widgets/sign_up_form.dart';
@@ -16,10 +16,9 @@ class WelcomePage extends ConsumerStatefulWidget {
 
 class _WelcomePageState extends ConsumerState<WelcomePage> {
   bool _signUp = false;
-  late final UserEntity _cashedData;
   @override
   void initState() {
-    _cashedData = ref.read(userNotifierProvider.notifier).getCashedData();
+    Future(() => ref.read(userNotifierProvider.notifier).getCashedData());
     super.initState();
   }
 
@@ -34,34 +33,42 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
     final userData = ref.watch(userNotifierProvider);
     final snackBar = AnimatedSnackBar.material(
       userData.messege,
+      duration: const Duration(seconds: 2),
       type: AnimatedSnackBarType.error,
-      desktopSnackBarPosition: DesktopSnackBarPosition.bottomCenter,
     );
-    
-    // TODO: добавить проверку кеша (_cashedData.isRegistred ||)
-    if ( userData.isRegistred) {
+    if (userData.isRegistred) {
       return const MainPage();
     } else {
       if (userData.messege != '') {
         snackBar.show(context);
-        Future.delayed(const Duration(seconds: 2));
       }
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SizedBox(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Text('Wolcome to Not Casino',
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.05,
+              ),
               _signUp ? const SignUpForm() : const SignInForm(),
-              TextButton(
-                  onPressed: _changeType,
-                  child: Text(
-                    _signUp
-                        ? 'Already have an account? SignIn'
-                        : 'Do not have an account? SignUp!',
-                    style: const TextStyle(fontSize: 20, color: Colors.white),
-                  ))
+              Consumer(builder: (context, ref, child) {
+                final loading = ref.watch(loadingProvider);
+                return TextButton(
+                    onPressed: loading ? () {} : _changeType,
+                    child: Text(
+                      _signUp
+                          ? 'Already have an account? SignIn!'
+                          : 'Do not have an account? SignUp!',
+                      style: const TextStyle(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 135, 201, 255)),
+                    ));
+              })
             ],
           ),
         ),
