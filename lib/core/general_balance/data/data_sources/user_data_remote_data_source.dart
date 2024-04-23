@@ -16,12 +16,12 @@ class UserDataRemote {
 
   UserDataRemote({required this.dio});
 
-  get baseMainURl => null;
   Future<Either<Failure, UserDataModel>> getUserData(
       String username, String password, String token) async {
     try {
       final response =
           await dio.get('${baseMainURL}get_data?access_token=$token');
+      
       if (response.statusCode == 200) {
         final userModel = UserDataModel.fromMap(response.data);
         return Right(userModel);

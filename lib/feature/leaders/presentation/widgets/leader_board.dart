@@ -45,37 +45,35 @@ class _LeaderBoardState extends ConsumerState<LeaderBoard> {
             child: SizedBox(
               width: MediaQuery.sizeOf(context).width * 0.5,
               height: MediaQuery.sizeOf(context).height * 0.55,
-              child: Expanded(
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return LeaderField(
-                        data[index].username,
-                        data[index].balance,
-                        index,
-                        color: const Color.fromARGB(255, 255, 215, 0),
-                      );
-                    } else if (index == 1) {
-                      return LeaderField(
-                        data[index].username,
-                        data[index].balance,
-                        index,
-                        color: const Color.fromARGB(255, 192, 192, 192),
-                      );
-                    } else if (index == 2) {
-                      return LeaderField(
-                        data[index].username,
-                        data[index].balance,
-                        index,
-                        color: const Color.fromARGB(255, 205, 127, 50),
-                      );
-                    }
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  if (index == 0) {
                     return LeaderField(
-                        data[index].username, data[index].balance, index);
-                  },
-                  itemCount: data.length,
-                ),
+                      data[index].username,
+                      data[index].balance,
+                      index,
+                      color: const Color.fromARGB(255, 255, 215, 0),
+                    );
+                  } else if (index == 1) {
+                    return LeaderField(
+                      data[index].username,
+                      data[index].balance,
+                      index,
+                      color: const Color.fromARGB(255, 192, 192, 192),
+                    );
+                  } else if (index == 2) {
+                    return LeaderField(
+                      data[index].username,
+                      data[index].balance,
+                      index,
+                      color: const Color.fromARGB(255, 205, 127, 50),
+                    );
+                  }
+                  return LeaderField(
+                      data[index].username, data[index].balance, index);
+                },
+                itemCount: data.length,
               ),
             ),
           ),
