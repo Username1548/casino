@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../internal/provider.dart';
+import '../../../../core/general_balance/providers/balance_state_provider.dart';
+import '../../../user_managment/presentation/providers/user_state_provider.dart';
+import '../../domain/use_cases/bj_use_cases.dart';
+
 
 class BlackJackBetScreen extends ConsumerWidget {
-  const BlackJackBetScreen({super.key});
+  BlackJackBetScreen({super.key});
 
   static const chipsValue = [1, 5, 10, 25, 100, 250, 1000];
+  int bet = 1;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userData = ref.watch(userDataNotifierStateProvider);
     final table = ref.watch(tableBjProvider);
-
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.all(40),
@@ -38,9 +42,8 @@ class BlackJackBetScreen extends ConsumerWidget {
                                 color: Colors.white,
                                 icon: const Icon(Icons.close),
                                 onPressed: () {
-                                  ref
-                                      .read(tableBjProvider.notifier)
-                                      .changeBet(1);
+                                  ref.read(tableBjProvider.notifier).
+                                  changeBet(1);
                                 })),
                         textAlign: TextAlign.center,
                       ))),
@@ -60,12 +63,12 @@ class BlackJackBetScreen extends ConsumerWidget {
                             'assets/images/chips/standard/${chipsValue[index]}.png'),
                         onPressed: () {
                           int start = table.bet;
-                          if (table.bet == 1) {
+                          if (table.bet == 1){
                             start = 0;
                           }
-                          ref
-                              .read(tableBjProvider.notifier)
-                              .changeBet(start + chipsValue[index]);
+                          ref.read(tableBjProvider.notifier).
+                          changeBet(start + chipsValue[index]);
+
                         },
                       );
                     },
@@ -77,7 +80,9 @@ class BlackJackBetScreen extends ConsumerWidget {
                   SizedBox(
                       width: 200,
                       child: FilledButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context, ModalRoute.withName("/"));
+                          },
                           style: FilledButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
                           child: const Text(
@@ -90,16 +95,10 @@ class BlackJackBetScreen extends ConsumerWidget {
                       width: 200,
                       child: FilledButton(
                           onPressed: () {
-                            table.mainHand.addCardBj();
-                            table.mainHand.addCardBj();
-                            table.dealerHand.addCardBj();
-
-                            if (table.checkBj(table.mainHand)) {
-                              ref.read(tableBjProvider.notifier).stand();
-                              Navigator.pushNamed(context, "/BJResult");
-                            } else {
+                            if (table.bet <= userData!.balance) {
+                              ref.read(tableBjProvider.notifier).create();
                               Navigator.pushNamed(context, "/BJGame");
-                            }
+                            } //todo add loading
                           },
                           style: FilledButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
