@@ -1,12 +1,15 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:casino/core/general_balance/providers/balance_state_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserInfo extends StatelessWidget {
+class UserInfo extends ConsumerWidget {
   final String username;
   final int balance;
   const UserInfo(this.username, this.balance, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
@@ -47,6 +50,27 @@ class UserInfo extends StatelessWidget {
                   Text(
                     '$username ',
                     style: const TextStyle(color: Colors.white),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.logout),
+                    color: const Color.fromARGB(255, 221, 28, 14),
+                    onPressed: () {
+                      ref
+                          .read(userDataNotifierStateProvider.notifier)
+                          .cleanCashedData()
+                          .then((value) {
+                        if (value == true) {
+                          Navigator.pushReplacementNamed(context, '/');
+                        } else {
+                          final snackBar = AnimatedSnackBar.material(
+                            'Unknown error has occured',
+                            duration: const Duration(seconds: 2),
+                            type: AnimatedSnackBarType.error,
+                          );
+                          snackBar.show(context);
+                        }
+                      });
+                    },
                   ),
                 ],
               ),
@@ -90,7 +114,9 @@ class UserInfo extends StatelessWidget {
                     Icons.add,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Main/MoneyWheel');
+                  },
                 )
               ],
             )

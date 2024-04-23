@@ -22,7 +22,7 @@ class LeaderField extends StatelessWidget {
             color: color ?? Colors.white,
           ),
           const SizedBox(width: 15),
-          Expanded(child: LeaderInfo(username, balance, color: color))
+          LeaderInfo(username, balance, color: color)
         ],
       ),
     );

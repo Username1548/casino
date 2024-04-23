@@ -11,32 +11,42 @@ final userDataNotifierStateProvider =
   final user = ref.watch(userNotifierProvider);
   final getUserData = ref.read(getUserDataProvider);
   final cashUserData = ref.read(cashUserDataProvider);
-  return UserDataNotifier(user, getUserData, cashUserData);
+  final cleanCashedData = ref.read(cleanCashedDataProvider);
+  return UserDataNotifier(user, getUserData, cashUserData, cleanCashedData);
 });
 
 class UserDataNotifier extends StateNotifier<UserDataEntity?> {
   final GetUserData _getUserData;
   final UserEntity _user;
   final CashUserData _cashUserData;
-  UserDataNotifier(this._user, this._getUserData, this._cashUserData)
+  final CleanCashedData _cleanCashedData;
+  UserDataNotifier(
+      this._user, this._getUserData, this._cashUserData, this._cleanCashedData)
       : super(null);
 
   getUserData() async {
     final userData =
         await _getUserData(_user.username, _user.password, _user.token);
-    state = userData.fold(
-        (l) =>
-            UserDataEntity(username: l.message, balance: 0, message: l.message),
-        (r) {
-      _cashUserData.call(
-          username: r.username, password: _user.password, token: _user.token);
-      return UserDataEntity(username: r.username, balance: r.balance);
-    });
+
+    if (mounted) {
+      state = userData.fold(
+          (l) => UserDataEntity(
+              username: l.message, balance: 0, message: l.message), (r) {
+        _cashUserData.call(
+            username: r.username, password: _user.password, token: _user.token);
+        return UserDataEntity(username: r.username, balance: r.balance);
+      });
+    }
   }
 
   changeUserBalance(int changeValue) {
     if (state != null) {
       state = state!.copyWith(balance: state!.balance + changeValue);
     }
+  }
+
+  Future<bool> cleanCashedData() async {
+    final isSucces = await _cleanCashedData();
+    return isSucces.fold((l) => false, (r) => true);
   }
 }

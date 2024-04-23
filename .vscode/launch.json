@@ -8,7 +8,7 @@
             "name": "casino",
             "request": "launch",
             "type": "dart",
-            "program": "lib/core/main.dart",
+            "program": "lib/main.dart",
             
         },
         {
