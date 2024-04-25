@@ -1,7 +1,7 @@
 import 'package:casino/feature/leaders/presentation/pages/leaders_page.dart';
 import 'package:casino/feature/main/pages/main_page.dart';
 import 'package:casino/feature/money_wheel/presentation/pages/money_wheel_page.dart';
-import 'package:casino/feature/roulette/presentation/pages/roulette.dart';
+import 'package:casino/feature/roulette/presentation/pages/roulette_page.dart';
 import 'package:casino/feature/user_managment/presentation/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

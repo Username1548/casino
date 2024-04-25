@@ -8,9 +8,9 @@ class MonyeWheel extends ConsumerStatefulWidget {
   final int? angleDelta;
 
   const MonyeWheel({
-    Key? key,
+    super.key,
     this.angleDelta,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<MonyeWheel> createState() => _MonyeWheelState();
@@ -122,8 +122,6 @@ class _MonyeWheelState extends ConsumerState<MonyeWheel>
         sectors[i]
       ]);
     }
-    print('*********');
-    print(widget.angleDelta);
-    print(qwe);
+    
   }
 }

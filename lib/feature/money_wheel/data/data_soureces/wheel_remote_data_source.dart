@@ -20,13 +20,16 @@ class WheelRemoteDataSource {
       String username, String password, String token) async {
     try {
       final response =
-          await dio.post('${baseWheelURL}debug?access_token=$token');
+          await dio.post('${baseWheelURL}spin?access_token=$token');
       if (response.statusCode == 200) {
         return Right(WheelModel.fromMap(response.data));
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        if (e.response!.statusCode == 400) {
+        print(e.response!.data['detail']);
+        if (e.response!.statusCode == 400 &&
+            e.response!.data['detail'] ==
+                "Token isn't valid!") {
           final newToken = await _generateToken(username, password);
           final response = newToken.fold((l) => null, (r) async {
             final response = await spin(username, password, r);

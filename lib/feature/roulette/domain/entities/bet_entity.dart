@@ -2,15 +2,15 @@ import 'package:casino/feature/roulette/data/models/bet_model.dart';
 import 'package:equatable/equatable.dart';
 
 class BetEntity extends Equatable {
-  final int? red;
-  final int? black;
-  final int? odd;
-  final int? even;
-  final int? firstEighteen;
-  final int? secondEighteen;
-  final int? firstTwelve;
-  final int? secondTwelve;
-  final int? thirdTwelve;
+  final int red;
+  final int black;
+  final int odd;
+  final int even;
+  final int firstEighteen;
+  final int secondEighteen;
+  final int firstTwelve;
+  final int secondTwelve;
+  final int thirdTwelve;
   final List<int?> numbers;
   const BetEntity({
     required this.red,
@@ -46,7 +46,7 @@ class BetEntity extends Equatable {
     int? firstTwelve,
     int? secondTwelve,
     int? thirdTwelve,
-    List<int>? numbers,
+    List<int?>? numbers,
   }) {
     return BetEntity(
       red: red ?? this.red,
@@ -76,5 +76,28 @@ class BetEntity extends Equatable {
       thirdTwelve,
       numbers,
     ];
+  }
+
+  bool isAnyBets() {
+    bool result = false;
+    if (red != 0 ||
+        black != 0 ||
+        odd != 0 ||
+        even != 0 ||
+        firstTwelve != 0 ||
+        secondTwelve != 0 ||
+        thirdTwelve != 0 ||
+        firstEighteen != 0 ||
+        secondEighteen != 0) {
+      result = true;
+    }
+
+    for (var element in numbers) {
+      if (element != null) {
+        result = true;
+        break;
+      }
+    }
+    return result;
   }
 }

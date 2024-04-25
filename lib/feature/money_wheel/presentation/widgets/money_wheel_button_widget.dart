@@ -20,9 +20,9 @@ class _FortuneWheelState extends ConsumerState<MoneyWheelButton> {
         
         );
   }
-    , error: (er, stackTrace) => const Text('qwe'), loading: (){
-      return MonyeWheel();
-  
+    , error: (er, stackTrace) => const MonyeWheel(), loading: (){
+      return const MonyeWheel();
+
     });
   }
 }

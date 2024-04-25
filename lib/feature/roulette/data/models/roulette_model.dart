@@ -25,8 +25,8 @@ class RouletteModel extends Equatable {
 
   factory RouletteModel.fromMap(Map<String, dynamic> map) {
     return RouletteModel(
-      winNumber: map['winNumber'] as int,
-      moneyDelta: map['moneyDelta'] as int,
+      winNumber: map['win_number'] as int,
+      moneyDelta: map['money_delta'] as int,
     );
   }
 

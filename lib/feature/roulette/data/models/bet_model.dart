@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 class BetModel extends Equatable {
@@ -34,7 +37,7 @@ class BetModel extends Equatable {
     int? firstTwelve,
     int? secondTwelve,
     int? thirdTwelve,
-    List<int>? numbers,
+    List<int?>? numbers,
   }) {
     return BetModel(
       red: red ?? this.red,
@@ -52,32 +55,32 @@ class BetModel extends Equatable {
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> betMap = {};
-    if (red != null) {
+    if (red != 0) {
       betMap.addAll({'red': red});
     }
-    if (black != null) {
+    if (black != 0) {
       betMap.addAll({'black': black});
     }
-    if (odd != null) {
+    if (odd != 0) {
       betMap.addAll({'odd': odd});
     }
-    if (even != null) {
+    if (even != 0) {
       betMap.addAll({'even': even});
     }
-    if (firstEighteen != null) {
+    if (firstEighteen != 0) {
       betMap.addAll({'1-18': firstEighteen});
     }
-    if (secondEighteen != null) {
+    if (secondEighteen != 0) {
       betMap.addAll({'19-36': secondEighteen});
     }
-    if (firstTwelve != null) {
+    if (firstTwelve != 0) {
       betMap.addAll({'1-12': firstTwelve});
     }
-    if (secondTwelve != null) {
-      betMap.addAll({'13-26': secondTwelve});
+    if (secondTwelve != 0) {
+      betMap.addAll({'13-24': secondTwelve});
     }
-    if (thirdTwelve != null) {
-      betMap.addAll({'27-36': thirdTwelve});
+    if (thirdTwelve != 0) {
+      betMap.addAll({'25-36': thirdTwelve});
     }
 
     for (var i = 0; i < numbers.length; i++) {
@@ -87,6 +90,12 @@ class BetModel extends Equatable {
     }
     return betMap;
   }
+
+  String toJson() => json.encode(toMap());
+
+
+  @override
+  bool get stringify => true;
 
   @override
   List<Object?> get props {
