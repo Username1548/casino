@@ -4,6 +4,12 @@ import 'package:casino/feature/roulette/domain/entities/bet_entity.dart';
 import 'package:casino/feature/roulette/domain/entities/roulette_entity.dart';
 import 'package:casino/feature/roulette/domain/reposytory/roulette_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final rouletteRepositoryProvider = Provider((ref) {
+  final dataSource = ref.read(rouletteRemoteSourceProvider);
+  return RouletteRepositoryImpl(dataSource: dataSource);
+});
 
 class RouletteRepositoryImpl implements RouletteRepository {
   final RouletteRemoteDataSource dataSource;
