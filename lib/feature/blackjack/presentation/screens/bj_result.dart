@@ -44,6 +44,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                       height: 200,
                       child: Column(
                         children: [
+
                           ListTile(
                               title: Text(
                                   style: const TextStyle(
@@ -72,7 +73,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                       child: TextField(
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintText: "Результат: !въебать сюда результат ток хз как!}",
+                          hintText: "Результат: ${table.result()}",
                           border: InputBorder.none,
                           hintStyle: const TextStyle(
                               fontSize: 20,

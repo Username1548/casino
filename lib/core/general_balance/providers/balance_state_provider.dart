@@ -39,7 +39,7 @@ class UserDataNotifier extends StateNotifier<UserDataEntity?> {
     }
   }
 
-  changeUserBalance(int changeValue) {
+  chageUserBalanse(int changeValue) {
     if (state != null) {
       state = state!.copyWith(balance: state!.balance + changeValue);
     }

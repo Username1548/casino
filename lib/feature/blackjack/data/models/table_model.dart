@@ -5,8 +5,9 @@ class BjTable{
   final BjHand playerHand;
   final BjHand dealerHand;
   int bet = 1;
+  bool isDouble = false;
 
-  BjTable(this.playerHand, this.dealerHand, this.bet);
+  BjTable(this.playerHand, this.dealerHand, this.bet, this.isDouble);
 
   factory BjTable.fromMap(Map<String, dynamic> map){
     List<CardBj> playerCards = [];
@@ -30,20 +31,48 @@ class BjTable{
     return BjTable(
         BjHand(playerCards),
         BjHand(dealerCards),
-        bet // todo add check
+        bet, // todo add check,
+        false //todo fix
     );
   }
 
   BjTable copyWith({
     BjHand? playerHand,
     BjHand? dealerHand,
-    int? bet
+    int? bet,
+    bool? isDouble
   }) {
     return BjTable(
         playerHand ?? this.playerHand,
         dealerHand ?? this.dealerHand,
-        bet ?? 1
+        bet ?? this.bet,
+        isDouble ?? this.isDouble
     );
+  }
+
+  int result() {
+    int playerScore = playerHand.calculateAmount();
+    int dealerScore = dealerHand.calculateAmount();
+
+    int multiplier = 1;
+
+    if (isDouble){
+      multiplier = 2;
+    }
+
+    if (playerScore == 21 && playerHand.cards.length == 2){
+      return (bet*1.5).round();
+    }
+
+
+    if ((playerScore < dealerScore && dealerScore <= 21) || playerScore > 21){
+      return bet * -1 * multiplier;
+    }else if(playerScore == dealerScore){
+      return 0;
+    }else{
+      return bet * multiplier;
+    }
+
   }
 
 }

@@ -13,10 +13,10 @@ import '../repositories/bj_repository.dart';
 final tableBjProvider = StateNotifierProvider<TableBjProviderClass, BjTable>
   (
         (ref) => TableBjProviderClass(
-          BjTable(const BjHand([]), const BjHand([]), 1),
+          BjTable(const BjHand([]), const BjHand([]), 1, false),
           remoteRepository: ref.read(bjRepositoryProvider),
           userData: ref.watch(userNotifierProvider),
-            changeUserBalance: ref.watch(userDataNotifierStateProvider)
+          userDataNotifier: ref.read(userDataNotifierStateProvider.notifier)
 
         )
 );
@@ -25,7 +25,7 @@ final tableBjProvider = StateNotifierProvider<TableBjProviderClass, BjTable>
 class TableBjProviderClass extends StateNotifier<BjTable>{
   final remoteRepository;
   final UserEntity userData;
-  final changeUserBalance;
+  final UserDataNotifier userDataNotifier;
 
 
 
@@ -34,7 +34,7 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
       {
         required this.remoteRepository,
         required this.userData,
-        required this.changeUserBalance
+        required this.userDataNotifier
       }
       );
 
@@ -48,12 +48,10 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
 
   Future<void> create() async {
 
-
-
     final response = await remoteRepository.createTable(state.bet, userData.token);
 
     BjTable table = response.getOrElse(  // todo isRight()?
-            () => BjTable(BjHand([]), BjHand([]), 0)
+            () => BjTable(BjHand([]), BjHand([]), 0, false)
     );
 
 
@@ -71,7 +69,7 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
 
 
     BjTable table = response.getOrElse(  // todo isRight()?
-            () => BjTable(BjHand([]), BjHand([]), 0)
+            () => BjTable(BjHand([]), BjHand([]), 0, false)
     );
 
     int bet = state.bet;
@@ -89,11 +87,12 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
   Future<void> stand() async {
     final response = await remoteRepository.stand(userData.token);
 
-    int result = response[1];
+    //int result = response[1];
 
 
-    BjTable table = response[0].getOrElse(  // todo isRight()?
-            () => BjTable(BjHand([]), BjHand([]), 0)
+
+    BjTable table = response.getOrElse(  // todo isRight()?
+            () => BjTable(BjHand([]), BjHand([]), 0, false)
     );
     int bet = state.bet;
     if (table.bet != 0){
@@ -106,10 +105,37 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
         bet: bet
     );
 
-    changeUserBalance.changeUserBalance(result);
+    userDataNotifier.chageUserBalanse(state.result());
 
   }
 
+  Future<void> double() async {
+    if (userDataNotifier.state!.balance < state.bet * 2 ){ // todo death stick. verim?
+      return;
+    }
+
+
+    final response = await remoteRepository.double(userData.token);
+
+    BjTable table = response.getOrElse(  // todo isRight()?
+            () => BjTable(BjHand([]), BjHand([]), 0, false)
+    );
+
+    int bet = state.bet;
+    if (table.bet != 0){
+      bet = table.bet;
+    }
+
+    state = state.copyWith(
+        playerHand: table.playerHand,
+        dealerHand: table.dealerHand,
+        bet: bet,
+        isDouble: true
+    );
+
+    userDataNotifier.chageUserBalanse(state.result());
+
+  }
 }
 
 

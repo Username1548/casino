@@ -68,14 +68,14 @@ class BjRemoteDataSource {
     return Left(UnknowError());
   }
 
-  Future<Either<Failure, List>> stand(String token) async {
+  Future<Either<Failure, BjTable>> stand(String token) async {
     try {
       final response = await dio.post('${baseBJURL}stand?access_token=$token');
       final BjTable result = BjTable.fromMap(response.data);
 
       if (response.statusCode == 200) {
         return Right(
-            [result, response.data["result"] as int]
+            result
         );
       }
 
@@ -91,8 +91,8 @@ class BjRemoteDataSource {
 
   Future<Either<Failure, BjTable>> double(String token) async {
     try {
-      final response = await dio.post('${baseBJURL}double',
-          data: {'token': token});
+      final response = await dio.post('${baseBJURL}double?access_token=$token');
+
       final BjTable result = BjTable.fromMap(response.data);
 
       if (response.statusCode == 200) {
@@ -102,6 +102,7 @@ class BjRemoteDataSource {
       }
 
     } on DioException catch (e) {
+      print(e.message);
       if (e.response != null) {
         if (e.response!.statusCode == 400) {
           return Left(UnknowError());

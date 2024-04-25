@@ -89,6 +89,10 @@ class BlackjackGameScreen extends ConsumerWidget {
                                         child: Row(children: [
                                       IconButton(
                                           onPressed: () {
+                                            ref
+                                                .read(tableBjProvider.notifier)
+                                                .double();
+                                            Navigator.pushNamed(context, "/BJResult");
 
                                           },
                                           icon: const Icon(
