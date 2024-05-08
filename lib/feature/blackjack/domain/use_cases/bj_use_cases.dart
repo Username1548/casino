@@ -23,9 +23,10 @@ final tableBjProvider = StateNotifierProvider<TableBjProviderClass, BjTable>
 
 
 class TableBjProviderClass extends StateNotifier<BjTable>{
-  final remoteRepository;
+  final BjRepository remoteRepository;
   final UserEntity userData;
   final UserDataNotifier userDataNotifier;
+  bool isWork = false;
 
 
 
@@ -48,26 +49,23 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
 
   Future<void> create() async {
 
-    final response = await remoteRepository.createTable(state.bet, userData.token);
+    final response = await remoteRepository.createTable(state.bet, userData.token, userData.username, userData.password);
 
     BjTable table = response.getOrElse(  // todo isRight()?
             () => BjTable(BjHand([]), BjHand([]), 0, false)
     );
 
-
       state = state.copyWith(
         playerHand: table.playerHand,
         dealerHand: table.dealerHand,
-        bet: table.bet
+        bet: table.bet,
+        isDouble: false
       );
 
     }
 
   Future<void> add() async {
-    final response = await remoteRepository.addCard(userData.token);
-
-
-
+    final response = await remoteRepository.addCard(userData.token, userData.username, userData.password);
     BjTable table = response.getOrElse(  // todo isRight()?
             () => BjTable(BjHand([]), BjHand([]), 0, false)
     );
@@ -85,7 +83,7 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
   }
 
   Future<void> stand() async {
-    final response = await remoteRepository.stand(userData.token);
+    final response = await remoteRepository.stand(userData.token, userData.username, userData.password);
 
     //int result = response[1];
 
@@ -110,12 +108,15 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
   }
 
   Future<void> double() async {
-    if (userDataNotifier.state!.balance < state.bet * 2 ){ // todo death stick. verim?
+    if (userDataNotifier.state!.balance < state.bet * 2 ){
       return;
     }
 
+    if (state.playerHand.cards.length != 2){
+      return;
+    }
 
-    final response = await remoteRepository.double(userData.token);
+    final response = await remoteRepository.double(userData.token, userData.username, userData.password);
 
     BjTable table = response.getOrElse(  // todo isRight()?
             () => BjTable(BjHand([]), BjHand([]), 0, false)

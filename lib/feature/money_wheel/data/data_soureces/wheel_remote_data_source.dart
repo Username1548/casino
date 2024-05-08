@@ -26,7 +26,6 @@ class WheelRemoteDataSource {
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data['detail']);
         if (e.response!.statusCode == 400 &&
             e.response!.data['detail'] ==
                 "Token isn't valid!") {

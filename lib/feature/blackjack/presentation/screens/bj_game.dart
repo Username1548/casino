@@ -29,7 +29,7 @@ class BlackjackGameScreen extends ConsumerWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
-                                "Ваши карты:")),
+                                "Ваши карты: ")),
                         SizedBox(
                             width: 400,
                             height: 130,
@@ -53,9 +53,17 @@ class BlackjackGameScreen extends ConsumerWidget {
                                       child: Row(children: [
                                     IconButton(
                                         onPressed: () {
-                                          ref
-                                              .read(tableBjProvider.notifier)
+                                          ref.read(tableBjProvider.notifier)
                                               .add();
+
+                                          if (ref.read(tableBjProvider.notifier)
+                                              .state.playerHand.calculateAmount() >= 21){
+                                            ref.read(tableBjProvider.notifier)
+                                                .stand();
+                                            Navigator.pushNamed(context, "/BJResult");
+                                          }
+
+
                                         },
                                         icon: const Icon(Icons.add),
                                         color: Colors.green),
@@ -70,8 +78,7 @@ class BlackjackGameScreen extends ConsumerWidget {
                                       child: Row(children: [
                                     IconButton(
                                         onPressed: () {
-                                          ref
-                                              .read(tableBjProvider.notifier)
+                                          ref.read(tableBjProvider.notifier)
                                               .stand();
                                           Navigator.pushNamed(context, "/BJResult");
                                         },
@@ -84,16 +91,17 @@ class BlackjackGameScreen extends ConsumerWidget {
                                             color: Colors.black),
                                         "Stand")
                                   ])),
-                                  if (true)
+                                  if (table.playerHand.cards.length == 2)
                                     SizedBox(
                                         child: Row(children: [
                                       IconButton(
                                           onPressed: () {
-                                            ref
-                                                .read(tableBjProvider.notifier)
-                                                .double();
-                                            Navigator.pushNamed(context, "/BJResult");
-
+                                            if (table.playerHand.cards.length == 2){
+                                              ref
+                                                  .read(tableBjProvider.notifier)
+                                                  .double();
+                                              Navigator.pushNamed(context, "/BJResult");
+                                            }
                                           },
                                           icon: const Icon(
                                               Icons.looks_two_rounded),

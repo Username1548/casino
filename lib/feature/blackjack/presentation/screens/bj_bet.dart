@@ -63,7 +63,7 @@ class BlackJackBetScreen extends ConsumerWidget {
                             'assets/images/chips/standard/${chipsValue[index]}.png'),
                         onPressed: () {
                           int start = table.bet;
-                          if (table.bet == 1){
+                          if (table.bet == 1 && index != 0){
                             start = 0;
                           }
                           ref.read(tableBjProvider.notifier).
