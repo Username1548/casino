@@ -9,7 +9,7 @@ class UnknowError extends Failure {
 
 class CashedDataHasNullError extends Failure {
   @override
-  String get message => 'Some cashed data has a null';
+  String get message => '';
 }
 
 class UnvalidTokenError extends Failure {

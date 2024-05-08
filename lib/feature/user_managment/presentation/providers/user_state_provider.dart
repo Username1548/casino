@@ -88,10 +88,11 @@ class UserNotifier extends StateNotifier<UserEntity> {
         username: username, password: password, token: token);
   }
 
-  UserEntity getCashedData() {
+  getCashedData() {
     final result = _getCashedData();
-    return result.fold<UserEntity>(
-        (l) => state.copyWith(isRegistred: false, messege: l.message), (r) {
+    state = result.fold<UserEntity>((l) {
+      return state.copyWith(isRegistred: false, messege: l.message);
+    }, (r) {
       userToken = r['token'] ?? '';
       return state.copyWith(
           username: r['username'],

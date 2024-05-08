@@ -1,11 +1,12 @@
 import 'package:casino/core/constants/constants.dart';
 import 'package:casino/core/error/failures.dart';
+import 'package:casino/core/providers/providers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final remoteDataSourceProvider = Provider<UserRemoteDataSource>((ref) {
-  final dio = Dio();
+  final dio = ref.read(dioProvider);
   return UserRemoteDataSource(dio: dio);
 });
 

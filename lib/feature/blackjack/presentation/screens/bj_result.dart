@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../internal/methods.dart';
-import '../../internal/provider.dart';
+import '../../domain/use_cases/bj_use_cases.dart';
+
+import '../utils/utils.dart';
 
 
 class BlackJackResultScreen extends ConsumerWidget {
@@ -29,13 +30,13 @@ class BlackJackResultScreen extends ConsumerWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
-                                  "Ваши карты (${table.mainHand.calculateAmount()}):")),
+                                  "Ваши карты (${table.playerHand.calculateAmount()}):")),
                           SizedBox(
                               width: 400,
                               height: 130,
                               child: ListView(
                                   scrollDirection: Axis.horizontal,
-                                  children: getImages(table.mainHand.cards))),
+                                  children: getImages(table.playerHand.cards))),
                         ],
                       )),
                   SizedBox(
@@ -43,6 +44,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                       height: 200,
                       child: Column(
                         children: [
+
                           ListTile(
                               title: Text(
                                   style: const TextStyle(
@@ -86,14 +88,16 @@ class BlackJackResultScreen extends ConsumerWidget {
                   FilledButton(
                       style: FilledButton.styleFrom(
                           backgroundColor: Colors.red.shade900),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.popUntil(context, ModalRoute.withName("/"));
+                      },
                       child: const Text("Главное меню")),
                   FilledButton(
                       style: FilledButton.styleFrom(
                           backgroundColor: Colors.red.shade900),
                       onPressed: () {
-                        Navigator.popUntil(context, ModalRoute.withName("/"));
-                        ref.read(tableBjProvider.notifier).refresh();
+                        Navigator.popUntil(context, ModalRoute.withName("/Main/BJBet"));
+
                       },
                       child: const Text("Играть снова"))
                 ],
