@@ -1,4 +1,5 @@
 import 'package:casino/feature/main/wdgets/custom_navigation_button.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class NavPanel extends StatelessWidget {
@@ -7,13 +8,13 @@ class NavPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.7,
-      child: const Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CustomNavButton('/Main/BJBet', 'White Jack'),
-            CustomNavButton('/Main/Roulette', 'Not Roulette')
-          ]),
+      height: MediaQuery.sizeOf(context).height * 0.75,
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        const CustomNavButton('/Main/BJBet', 'White Jack'),
+        const CustomNavButton('/Main/Roulette', 'Not Roulette'),
+        
+      ]),
     );
   }
 }

@@ -6,6 +6,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+
+
 final remoteDataSourceProvider = Provider<UserDataRemote>((ref) {
   final dio = ref.read(dioProvider);
   return UserDataRemote(dio: dio);
@@ -21,7 +23,7 @@ class UserDataRemote {
     try {
       final response =
           await dio.get('${baseMainURL}get_data?access_token=$token');
-      
+
       if (response.statusCode == 200) {
         final userModel = UserDataModel.fromMap(response.data);
         return Right(userModel);
