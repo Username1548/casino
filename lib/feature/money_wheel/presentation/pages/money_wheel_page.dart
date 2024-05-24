@@ -10,7 +10,7 @@ class MoneyWheelPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         title: const Text(
-          'GET YOUR MONEY!',
+          'GET YOUR CHIPS!',
           style: TextStyle(color: Colors.white),
         ),
       ),

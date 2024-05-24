@@ -11,6 +11,7 @@ import '../feature/blackjack/presentation/screens/bj_bet.dart';
 import '../feature/blackjack/presentation/screens/bj_game.dart';
 import '../feature/blackjack/presentation/screens/bj_result.dart';
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
               seedColor: Colors.white, background: Colors.green.shade900)),
       routes: {
         "/": (context) => const WelcomePage(),
+        "/Main/BJBet": (context) => BlackJackBetScreen(),
         "/BJGame": (context) => const BlackjackGameScreen(),
         "/BJResult": (context) => const BlackJackResultScreen(),
         "/Main/Roulette": (context) => const RoulettePage(),
-        "/Main/BJBet": (context) => const BlackJackBetScreen(),
+
         "/Main": (context) => const MainPage(),
         "/Main/Rules": (context) =>  const RulesPage(),
         "/Main/Leaders": (context) => const LeaderBoardPage(),
