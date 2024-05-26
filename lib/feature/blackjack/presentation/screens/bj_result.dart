@@ -30,7 +30,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
-                                  "Ваши карты (${table.playerHand.calculateAmount()}):")),
+                                  "Your Cards (${table.playerHand.calculateAmount()}):")),
                           SizedBox(
                               width: 400,
                               height: 130,
@@ -51,7 +51,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
-                                  "Карты дилера(${table.dealerHand.calculateAmount()}):")),
+                                  "Dealer's cards(${table.dealerHand.calculateAmount()}):")),
                           SizedBox(
                               width: 300,
                               height: 130,
@@ -73,7 +73,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                       child: TextField(
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintText: "Результат: ${table.result()}",
+                          hintText: "Result: ${table.result()}",
                           border: InputBorder.none,
                           hintStyle: const TextStyle(
                               fontSize: 20,
@@ -91,7 +91,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                       onPressed: () {
                         Navigator.popUntil(context, ModalRoute.withName("/"));
                       },
-                      child: const Text("Главное меню")),
+                      child: const Text("Main Menu")),
                   FilledButton(
                       style: FilledButton.styleFrom(
                           backgroundColor: Colors.red.shade900),
@@ -99,7 +99,7 @@ class BlackJackResultScreen extends ConsumerWidget {
                         Navigator.popUntil(context, ModalRoute.withName("/Main/BJBet"));
 
                       },
-                      child: const Text("Играть снова"))
+                      child: const Text("Play Again"))
                 ],
               )
             ])));

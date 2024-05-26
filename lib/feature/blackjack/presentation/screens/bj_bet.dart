@@ -32,7 +32,7 @@ class BlackJackBetScreen extends ConsumerWidget {
                       child: TextField(
                         readOnly: true,
                         decoration: InputDecoration(
-                            hintText: "Ставка: ${table.bet}",
+                            hintText: "Bet: ${table.bet}",
                             border: InputBorder.none,
                             hintStyle: const TextStyle(
                                 fontSize: 20,
@@ -90,7 +90,7 @@ class BlackJackBetScreen extends ConsumerWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
-                              "Главное меню"))),
+                              "Main menu"))),
                   SizedBox(
                       width: 200,
                       child: FilledButton(
@@ -107,7 +107,7 @@ class BlackJackBetScreen extends ConsumerWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
-                              "Играть")))
+                              "Play")))
                 ],
               )
             ],
