@@ -1,9 +1,6 @@
-import 'package:casino/core/user_token.dart';
 import 'package:casino/feature/blackjack/data/models/hand_model.dart';
 import 'package:casino/feature/blackjack/data/models/table_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../core/general_balance/providers/balance_state_provider.dart';
 import '../../../user_managment/domain/entities/user_entity.dart';
 import '../../../user_managment/presentation/providers/user_state_provider.dart';
@@ -24,7 +21,7 @@ final tableBjProvider = StateNotifierProvider<TableBjProviderClass, BjTable>
 
 class TableBjProviderClass extends StateNotifier<BjTable>{
   final BjRepository remoteRepository;
-  final UserEntity userData;
+  late UserEntity userData;
   final UserDataNotifier userDataNotifier;
   bool isWork = false;
 
@@ -37,6 +34,7 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
         required this.userData,
         required this.userDataNotifier
       }
+
       );
 
   void changeBet(int newBet){
@@ -48,7 +46,17 @@ class TableBjProviderClass extends StateNotifier<BjTable>{
   }
 
   Future<void> create() async {
-
+    if (userData.exp == null || DateTime.now().isBefore(userData.exp!)) {
+      String token = await remoteRepository.reloadToken(
+          userData.username, userData.password);
+      userData = userData.copyWith(
+          username: userData.username,
+          password: userData.password,
+          token: token,
+          isRegistred: userData.isRegistred,
+          messege: userData.messege,
+      exp: DateTime.now().add(const Duration(days: 1)));
+    }
     final response = await remoteRepository.createTable(state.bet, userData.token, userData.username, userData.password);
 
     BjTable table = response.getOrElse(  // todo isRight()?
