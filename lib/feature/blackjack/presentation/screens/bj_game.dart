@@ -29,7 +29,7 @@ class BlackjackGameScreen extends ConsumerWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
-                                "Ваши карты: ")),
+                                "Your Cards: ")),
                         SizedBox(
                             width: 400,
                             height: 130,
@@ -127,7 +127,7 @@ class BlackjackGameScreen extends ConsumerWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
-                                "Карты дилера:")),
+                                "Dealer's cards:")),
                         SizedBox(
                             width: 300,
                             height: 130,
