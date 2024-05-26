@@ -16,7 +16,7 @@ class BjRemoteDataSource {
 
   BjRemoteDataSource({required this.dio});
 
-  Future<Either<Failure, String>> _generateToken(
+  Future<Either<Failure, String>> generateToken(
       String username, String password) async {
     try {
       final response = await dio.post('${baseAuthURL}generate_token',
@@ -59,7 +59,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await createTable(bet, r, username, password);
               return response;
@@ -94,7 +94,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await addCard(r, username, password);
               return response;
@@ -128,7 +128,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await stand(r, username, password);
               return response;
@@ -163,7 +163,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await double(r, username, password);
               return response;
@@ -197,7 +197,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await getTable(r, username, password);
               return response;
@@ -229,7 +229,7 @@ class BjRemoteDataSource {
           if (e.response!.statusCode == 400 &&
               e.response!.data['detail'] ==
                   "Token isn't valid!") {
-            final newToken = await _generateToken(username, password);
+            final newToken = await generateToken(username, password);
             final response = newToken.fold((l) => null, (r) async {
               final response = await delete(r, username, password);
               return response;
