@@ -25,6 +25,7 @@ class UserLocalDataSource {
       'password': pref.getString('password'),
       'token': pref.getString('token')
     });
+    
     return userData;
   }
 }

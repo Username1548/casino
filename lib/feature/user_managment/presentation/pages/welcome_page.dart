@@ -50,7 +50,7 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('Wolcome to Not Casino',
+              const Text('Welcome to Lucky000',
                   style: TextStyle(color: Colors.white, fontSize: 20)),
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.05,
@@ -66,7 +66,7 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
                           : 'Do not have an account? SignUp!',
                       style: const TextStyle(
                           fontSize: 15,
-                          color: Color.fromARGB(255, 135, 201, 255)),
+                          color: Color.fromARGB(255, 105, 187, 255)),
                     ));
               })
             ],

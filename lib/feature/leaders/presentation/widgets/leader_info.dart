@@ -9,7 +9,7 @@ class LeaderInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.sizeOf(context).width * 0.4,
       height: MediaQuery.sizeOf(context).height * 0.05,
       decoration: BoxDecoration(
           boxShadow: const [

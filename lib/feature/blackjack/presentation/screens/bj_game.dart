@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../internal/methods.dart';
-import '../../internal/provider.dart';
+
+import '../../domain/use_cases/bj_use_cases.dart';
+import '../utils/utils.dart';
+
 
 class BlackjackGameScreen extends ConsumerWidget {
   const BlackjackGameScreen({super.key});
@@ -27,13 +29,13 @@ class BlackjackGameScreen extends ConsumerWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
-                                "Ваши карты:")),
+                                "Your Cards: ")),
                         SizedBox(
                             width: 400,
                             height: 130,
                             child: ListView(
                                 scrollDirection: Axis.horizontal,
-                                children: getImages(table.mainHand.cards))),
+                                children: getImages(table.playerHand.cards))),
                         const SizedBox(
                           height: 50,
                         ),
@@ -51,9 +53,17 @@ class BlackjackGameScreen extends ConsumerWidget {
                                       child: Row(children: [
                                     IconButton(
                                         onPressed: () {
-                                          ref
-                                              .read(tableBjProvider.notifier)
-                                              .addCard();
+                                          ref.read(tableBjProvider.notifier)
+                                              .add();
+
+                                          if (ref.read(tableBjProvider.notifier)
+                                              .state.playerHand.calculateAmount() >= 21){
+                                            ref.read(tableBjProvider.notifier)
+                                                .stand();
+                                            Navigator.pushNamed(context, "/BJResult");
+                                          }
+
+
                                         },
                                         icon: const Icon(Icons.add),
                                         color: Colors.green),
@@ -68,11 +78,9 @@ class BlackjackGameScreen extends ConsumerWidget {
                                       child: Row(children: [
                                     IconButton(
                                         onPressed: () {
-                                          ref
-                                              .read(tableBjProvider.notifier)
+                                          ref.read(tableBjProvider.notifier)
                                               .stand();
-                                          Navigator.pushNamed(
-                                              context, "/BJResult");
+                                          Navigator.pushNamed(context, "/BJResult");
                                         },
                                         icon: const Icon(Icons.stop),
                                         color: Colors.red),
@@ -83,18 +91,16 @@ class BlackjackGameScreen extends ConsumerWidget {
                                             color: Colors.black),
                                         "Stand")
                                   ])),
-                                  if (table.mainHand.canDouble)
+                                  if (table.playerHand.cards.length == 2)
                                     SizedBox(
                                         child: Row(children: [
                                       IconButton(
                                           onPressed: () {
-                                            if (table.mainHand.canDouble) {
+                                            if (table.playerHand.cards.length == 2){
                                               ref
-                                                  .read(
-                                                      tableBjProvider.notifier)
+                                                  .read(tableBjProvider.notifier)
                                                   .double();
-                                              Navigator.pushNamed(
-                                                  context, "/BJResult");
+                                              Navigator.pushNamed(context, "/BJResult");
                                             }
                                           },
                                           icon: const Icon(
@@ -121,7 +127,7 @@ class BlackjackGameScreen extends ConsumerWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
-                                "Карты дилера:")),
+                                "Dealer's cards:")),
                         SizedBox(
                             width: 300,
                             height: 130,
