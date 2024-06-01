@@ -1,6 +1,6 @@
-import 'package:casino/feature/user_managment/data/repositories/user_repository_impl.dart';
-import 'package:casino/feature/user_managment/domain/repositories/user_repository.dart';
-import 'package:casino/feature/user_managment/domain/use_cases/user_use_cases.dart';
+import '../../data/repositories/user_repository_impl.dart';
+import '../../domain/repositories/user_repository.dart';
+import '../../domain/use_cases/user_use_cases.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final signInProvider = Provider<SignIn>((ref) {

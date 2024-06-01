@@ -1,7 +1,7 @@
-import 'package:casino/core/constants/constants.dart';
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/core/general_balance/data/models/user_data_model.dart';
-import 'package:casino/core/providers/providers.dart';
+import '../../../constants/constants.dart';
+import '../../../error/failures.dart';
+import '../models/user_data_model.dart';
+import '../../../providers/providers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

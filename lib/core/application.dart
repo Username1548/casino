@@ -1,9 +1,9 @@
-import 'package:casino/feature/leaders/presentation/pages/leaders_page.dart';
-import 'package:casino/feature/main/pages/main_page.dart';
-import 'package:casino/feature/money_wheel/presentation/pages/money_wheel_page.dart';
-import 'package:casino/feature/roulette/presentation/pages/roulette_page.dart';
-import 'package:casino/feature/rules/presentation/pages/rules_page.dart';
-import 'package:casino/feature/user_managment/presentation/pages/welcome_page.dart';
+import '../feature/leaders/presentation/pages/leaders_page.dart';
+import '../feature/main/pages/main_page.dart';
+import '../feature/money_wheel/presentation/pages/money_wheel_page.dart';
+import '../feature/roulette/presentation/pages/roulette_page.dart';
+import '../feature/rules/presentation/pages/rules_page.dart';
+import '../feature/user_managment/presentation/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';

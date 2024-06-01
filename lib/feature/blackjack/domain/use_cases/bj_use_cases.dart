@@ -1,5 +1,5 @@
-import 'package:casino/feature/blackjack/data/models/hand_model.dart';
-import 'package:casino/feature/blackjack/data/models/table_model.dart';
+import '../../data/models/hand_model.dart';
+import '../../data/models/table_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/general_balance/providers/balance_state_provider.dart';
 import '../../../user_managment/domain/entities/user_entity.dart';

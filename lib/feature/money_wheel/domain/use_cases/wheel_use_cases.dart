@@ -1,7 +1,7 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/money_wheel/data/repositories/wheel_repository_impl.dart';
-import 'package:casino/feature/money_wheel/domain/entities/wheel_entity.dart';
-import 'package:casino/feature/money_wheel/domain/repositories/wheel_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../../data/repositories/wheel_repository_impl.dart';
+import '../entities/wheel_entity.dart';
+import '../repositories/wheel_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

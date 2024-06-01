@@ -1,8 +1,8 @@
-import 'package:casino/core/general_balance/providers/balance_state_provider.dart';
-import 'package:casino/feature/money_wheel/domain/entities/wheel_entity.dart';
-import 'package:casino/feature/money_wheel/domain/use_cases/wheel_use_cases.dart';
-import 'package:casino/feature/user_managment/domain/entities/user_entity.dart';
-import 'package:casino/feature/user_managment/presentation/providers/user_state_provider.dart';
+import '../../../../core/general_balance/providers/balance_state_provider.dart';
+import '../../domain/entities/wheel_entity.dart';
+import '../../domain/use_cases/wheel_use_cases.dart';
+import '../../../user_managment/domain/entities/user_entity.dart';
+import '../../../user_managment/presentation/providers/user_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final wheelDataProvider =

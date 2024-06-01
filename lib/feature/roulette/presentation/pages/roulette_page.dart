@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:casino/feature/roulette/presentation/providers/roulette_data_provider.dart';
-import 'package:casino/feature/roulette/presentation/widgets/roulette_board.dart';
-import 'package:casino/feature/roulette/presentation/widgets/roulette_wheel.dart';
+import '../providers/roulette_data_provider.dart';
+import '../widgets/roulette_board.dart';
+import '../widgets/roulette_wheel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

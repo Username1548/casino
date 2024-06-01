@@ -1,5 +1,5 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/core/general_balance/domain/entities/user_data_entity.dart';
+import '../../../error/failures.dart';
+import '../entities/user_data_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class UserBalanceRepository {

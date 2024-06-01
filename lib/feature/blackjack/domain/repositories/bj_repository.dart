@@ -1,7 +1,7 @@
 
 
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/blackjack/data/models/table_model.dart';
+import '../../../../core/error/failures.dart';
+import '../../data/models/table_model.dart';
 import 'package:dartz/dartz.dart';
 
 

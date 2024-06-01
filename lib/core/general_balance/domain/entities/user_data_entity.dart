@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:casino/core/general_balance/data/models/user_data_model.dart';
+import '../../data/models/user_data_model.dart';
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable

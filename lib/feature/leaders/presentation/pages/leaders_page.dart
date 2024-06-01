@@ -1,4 +1,4 @@
-import 'package:casino/feature/leaders/presentation/widgets/leader_board.dart';
+import '../widgets/leader_board.dart';
 import 'package:flutter/material.dart';
 
 class LeaderBoardPage extends StatelessWidget {

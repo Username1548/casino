@@ -1,5 +1,5 @@
-import 'package:casino/feature/blackjack/data/models/card_model.dart';
-import 'package:casino/feature/blackjack/data/models/hand_model.dart';
+import 'card_model.dart';
+import 'hand_model.dart';
 
 class BjTable{
   final BjHand playerHand;

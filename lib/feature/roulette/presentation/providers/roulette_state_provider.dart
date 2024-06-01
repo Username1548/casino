@@ -1,4 +1,4 @@
-import 'package:casino/feature/roulette/domain/entities/bet_entity.dart';
+import '../../domain/entities/bet_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final rouletteStateProvider =

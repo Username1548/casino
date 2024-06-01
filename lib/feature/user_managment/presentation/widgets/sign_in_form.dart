@@ -1,6 +1,6 @@
-import 'package:casino/core/user_token.dart';
-import 'package:casino/feature/user_managment/presentation/providers/loading_provider.dart';
-import 'package:casino/feature/user_managment/presentation/providers/user_state_provider.dart';
+import '../../../../core/user_token.dart';
+import '../providers/loading_provider.dart';
+import '../providers/user_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

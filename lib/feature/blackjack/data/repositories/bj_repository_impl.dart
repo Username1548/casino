@@ -1,7 +1,7 @@
-import 'package:casino/feature/blackjack/data/models/table_model.dart';
+import '../models/table_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:casino/feature/blackjack/domain/repositories/bj_repository.dart';
+import '../../domain/repositories/bj_repository.dart';
 
 import '../../../../core/error/failures.dart';
 import '../data_sources/bj_remote_data_source.dart';

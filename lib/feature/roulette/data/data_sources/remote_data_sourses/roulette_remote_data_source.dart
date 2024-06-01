@@ -1,8 +1,8 @@
-import 'package:casino/core/constants/constants.dart';
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/core/providers/providers.dart';
-import 'package:casino/feature/roulette/data/models/bet_model.dart';
-import 'package:casino/feature/roulette/data/models/roulette_model.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/error/failures.dart';
+import '../../../../../core/providers/providers.dart';
+import '../../models/bet_model.dart';
+import '../../models/roulette_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

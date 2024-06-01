@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import 'package:casino/core/general_balance/domain/entities/user_data_entity.dart';
+import '../../domain/entities/user_data_entity.dart';
 
 class UserDataModel extends Equatable {
   final String username;

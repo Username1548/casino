@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:casino/feature/money_wheel/presentation/providers/wheel_state_provider.dart';
+import '../providers/wheel_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:casino/feature/money_wheel/presentation/widgets/money_wheel_button_widget.dart';
+import '../widgets/money_wheel_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class MoneyWheelPage extends StatelessWidget {

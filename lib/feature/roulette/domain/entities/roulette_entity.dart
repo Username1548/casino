@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:casino/feature/roulette/domain/entities/bet_entity.dart';
+import 'bet_entity.dart';
 
 class RouletteEntity extends Equatable {
   final int winNumber;
