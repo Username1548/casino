@@ -26,7 +26,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
   }
 
   bool _isPassworValid(String password) {
-    if (password.length < 4 || password.length > 32) {
+    if (password.length < 8 || password.length > 32) {
       return false;
     } else if (password.contains(' ') || password.isEmpty) {
       return false;

@@ -25,7 +25,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   }
 
   bool _isPassworValid(String password) {
-    if (password.length < 4 || password.length > 32) {
+    if (password.length < 8 || password.length > 32) {
       return false;
     } else if (password.contains(' ') || password.isEmpty) {
       return false;
@@ -113,9 +113,11 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                   )
                 : ElevatedButton(
                     onPressed: () {
-                      ref.read(userNotifierProvider.notifier).signUp(
-                          userNameController.text, passwordController.text);
-                      ref.read(loadingProvider.notifier).state = true;
+                      if (_formKey.currentState!.validate()) {
+                        ref.read(userNotifierProvider.notifier).signUp(
+                            userNameController.text, passwordController.text);
+                        ref.read(loadingProvider.notifier).state = true;
+                      }
                     },
                     style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(

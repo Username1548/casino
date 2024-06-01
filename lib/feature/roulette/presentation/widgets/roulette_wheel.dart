@@ -170,7 +170,7 @@ class _MonyeWheelState extends ConsumerState<RouletteWheel>
                 onPressed: () async {
                   if (!isSpinnig) {
                     if (bet != null && balance != null) {
-                      if (bet!.betSum == 0 || bet!.betSum <= balance.balance) {
+                      if (bet!.betSum != 0 && bet!.betSum <= balance.balance) {
                         setState(() {
                           spin();
                           isSpinnig = true;
