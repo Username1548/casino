@@ -1,7 +1,7 @@
-import 'package:casino/core/general_balance/providers/balance_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/bet_sum_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/bet_value_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/uncolored_board_state_provider.dart';
+import '../../../../core/general_balance/providers/balance_state_provider.dart';
+import '../providers/bet_sum_state_provider.dart';
+import '../providers/bet_value_provider.dart';
+import '../providers/uncolored_board_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

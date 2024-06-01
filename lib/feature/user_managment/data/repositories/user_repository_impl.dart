@@ -1,7 +1,7 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/user_managment/data/data_sources/user_local_data_source.dart';
-import 'package:casino/feature/user_managment/data/data_sources/user_remote_data_source.dart';
-import 'package:casino/feature/user_managment/domain/repositories/user_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../data_sources/user_local_data_source.dart';
+import '../data_sources/user_remote_data_source.dart';
+import '../../domain/repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

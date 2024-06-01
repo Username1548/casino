@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:casino/feature/money_wheel/domain/entities/wheel_entity.dart';
+import '../../domain/entities/wheel_entity.dart';
 
 class WheelModel extends Equatable {
   final int moneyDelta;

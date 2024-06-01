@@ -1,8 +1,8 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/roulette/data/data_sources/remote_data_sourses/roulette_remote_data_source.dart';
-import 'package:casino/feature/roulette/domain/entities/bet_entity.dart';
-import 'package:casino/feature/roulette/domain/entities/roulette_entity.dart';
-import 'package:casino/feature/roulette/domain/reposytory/roulette_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../data_sources/remote_data_sourses/roulette_remote_data_source.dart';
+import '../../domain/entities/bet_entity.dart';
+import '../../domain/entities/roulette_entity.dart';
+import '../../domain/reposytory/roulette_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

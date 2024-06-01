@@ -1,4 +1,6 @@
-import 'package:casino/feature/roulette/data/models/bet_model.dart';
+import 'package:flutter/material.dart';
+
+import '../../data/models/bet_model.dart';
 import 'package:equatable/equatable.dart';
 
 class BetEntity extends Equatable {
@@ -60,6 +62,19 @@ class BetEntity extends Equatable {
       thirdTwelve: thirdTwelve ?? this.thirdTwelve,
       numbers: numbers ?? this.numbers,
     );
+  }
+
+  int get betSum {
+    final sum = red +
+        black +
+        odd +
+        even +
+        firstEighteen +
+        secondEighteen +
+        firstTwelve +
+        secondTwelve +
+        thirdTwelve + numbers.reduce((value, element) => (value ?? 0) + (element ?? 0 ))!;
+    return sum;
   }
 
   @override

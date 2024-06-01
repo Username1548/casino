@@ -1,5 +1,5 @@
-import 'package:casino/feature/leaders/presentation/providers/leaders_state_provider.dart';
-import 'package:casino/feature/leaders/presentation/widgets/leader_field.dart';
+import '../providers/leaders_state_provider.dart';
+import 'leader_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,5 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:casino/core/general_balance/providers/balance_state_provider.dart';
+import '../../../core/general_balance/providers/balance_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

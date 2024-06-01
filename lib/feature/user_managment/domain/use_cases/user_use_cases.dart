@@ -1,5 +1,5 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/user_managment/domain/repositories/user_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SignIn {

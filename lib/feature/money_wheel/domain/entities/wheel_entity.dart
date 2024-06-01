@@ -1,4 +1,4 @@
-import 'package:casino/feature/money_wheel/data/models/wheel_model.dart';
+import '../../data/models/wheel_model.dart';
 import 'package:equatable/equatable.dart';
 
 class WheelEntity extends Equatable {

@@ -1,9 +1,9 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:casino/feature/main/pages/main_page.dart';
-import 'package:casino/feature/user_managment/presentation/providers/loading_provider.dart';
-import 'package:casino/feature/user_managment/presentation/providers/user_state_provider.dart';
-import 'package:casino/feature/user_managment/presentation/widgets/sign_in_form.dart';
-import 'package:casino/feature/user_managment/presentation/widgets/sign_up_form.dart';
+import '../../../main/pages/main_page.dart';
+import '../providers/loading_provider.dart';
+import '../providers/user_state_provider.dart';
+import '../widgets/sign_in_form.dart';
+import '../widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

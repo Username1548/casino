@@ -1,7 +1,7 @@
-import 'package:casino/core/user_token.dart';
-import 'package:casino/feature/user_managment/domain/entities/user_entity.dart';
-import 'package:casino/feature/user_managment/domain/use_cases/user_use_cases.dart';
-import 'package:casino/feature/user_managment/presentation/providers/user_use_cases_proveders.dart';
+import '../../../../core/user_token.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/use_cases/user_use_cases.dart';
+import 'user_use_cases_proveders.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final userNotifierProvider =

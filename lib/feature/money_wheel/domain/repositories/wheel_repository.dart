@@ -1,5 +1,5 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/money_wheel/domain/entities/wheel_entity.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/wheel_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class WheelRepository {

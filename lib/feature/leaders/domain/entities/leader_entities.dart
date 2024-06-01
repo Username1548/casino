@@ -1,4 +1,4 @@
-import 'package:casino/feature/leaders/data/models/leader_model.dart';
+import '../../data/models/leader_model.dart';
 import 'package:equatable/equatable.dart';
 
 class LeaderEntity extends Equatable {

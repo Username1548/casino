@@ -1,10 +1,10 @@
-import 'package:casino/feature/roulette/presentation/providers/bet_sum_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/board_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/roulette_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/uncolored_board_state_provider.dart';
-import 'package:casino/feature/roulette/presentation/widgets/bet_value_widget.dart';
-import 'package:casino/feature/roulette/presentation/widgets/colored_board_item.dart';
-import 'package:casino/feature/roulette/presentation/widgets/uncolored_board_item.dart';
+import '../providers/bet_sum_state_provider.dart';
+import '../providers/board_state_provider.dart';
+import '../providers/roulette_state_provider.dart';
+import '../providers/uncolored_board_state_provider.dart';
+import 'bet_value_widget.dart';
+import 'colored_board_item.dart';
+import 'uncolored_board_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

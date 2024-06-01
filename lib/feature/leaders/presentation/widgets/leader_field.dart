@@ -1,4 +1,4 @@
-import 'package:casino/feature/leaders/presentation/widgets/leader_info.dart';
+import 'leader_info.dart';
 import 'package:flutter/material.dart';
 
 class LeaderField extends StatelessWidget {

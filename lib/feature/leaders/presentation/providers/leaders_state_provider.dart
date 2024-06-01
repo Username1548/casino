@@ -1,6 +1,6 @@
-import 'package:casino/core/error/failures.dart';
-import 'package:casino/feature/leaders/domain/entities/leader_entities.dart';
-import 'package:casino/feature/leaders/domain/use_cases/leader_use_cases.dart';
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/leader_entities.dart';
+import '../../domain/use_cases/leader_use_cases.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final leadersStateProvider =

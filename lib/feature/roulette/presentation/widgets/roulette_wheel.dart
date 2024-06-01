@@ -1,7 +1,9 @@
 import 'dart:math';
-import 'package:casino/feature/roulette/domain/entities/bet_entity.dart';
-import 'package:casino/feature/roulette/presentation/providers/roulette_data_provider.dart';
-import 'package:casino/feature/roulette/presentation/providers/roulette_state_provider.dart';
+import 'package:casino/core/general_balance/providers/balance_state_provider.dart';
+
+import '../../domain/entities/bet_entity.dart';
+import '../providers/roulette_data_provider.dart';
+import '../providers/roulette_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,6 +31,7 @@ class _MonyeWheelState extends ConsumerState<RouletteWheel>
   late AnimationController controller;
   late Animation<double> animation;
   BetEntity? bet;
+
   @override
   void initState() {
     sectors = const [
@@ -97,11 +100,11 @@ class _MonyeWheelState extends ConsumerState<RouletteWheel>
                 content: widget.moneyDelta! > 0
                     ? Text(
                         'YOU WIN ${widget.moneyDelta.toString()}',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.yellow),
                       )
                     : Text(
                         'YOU LOOSE ${(-1 * widget.moneyDelta!).toString()}',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.red),
                       ),
                 actions: [
                   ElevatedButton(
@@ -129,6 +132,7 @@ class _MonyeWheelState extends ConsumerState<RouletteWheel>
     ref.listen(rouletteStateProvider, (prev, next) {
       bet = next;
     });
+
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.angleDelta != null && isSpinnig == true) {
         spin();
@@ -153,28 +157,37 @@ class _MonyeWheelState extends ConsumerState<RouletteWheel>
             width: MediaQuery.sizeOf(context).width * 0.05,
           )
         ]),
-        ElevatedButton(
-            style: ButtonStyle(
-                minimumSize: MaterialStatePropertyAll(Size(
-                    MediaQuery.sizeOf(context).width * 0.2,
-                    MediaQuery.sizeOf(context).height * 0.07)),
-                backgroundColor: const MaterialStatePropertyAll(
-                    Color.fromARGB(255, 220, 45, 45))),
-            onPressed: () async {
-              if (!isSpinnig) {
-                setState(() {
-                  spin();
-                  isSpinnig = true;
-                });
-                if (bet != null) {
-                  await ref.read(rouletteDataProvider.notifier).play(bet!);
-                }
-              }
-            },
-            child: const Text(
-              'SPIN',
-              style: TextStyle(color: Colors.white),
-            )),
+        Consumer(
+          builder: (context, ref, child) {
+            final balance = ref.watch(userDataNotifierStateProvider);
+            return ElevatedButton(
+                style: ButtonStyle(
+                    minimumSize: MaterialStatePropertyAll(Size(
+                        MediaQuery.sizeOf(context).width * 0.2,
+                        MediaQuery.sizeOf(context).height * 0.07)),
+                    backgroundColor: const MaterialStatePropertyAll(
+                        Color.fromARGB(255, 220, 45, 45))),
+                onPressed: () async {
+                  if (!isSpinnig) {
+                    if (bet != null && balance != null) {
+                      if (bet!.betSum == 0 || bet!.betSum <= balance.balance) {
+                        setState(() {
+                          spin();
+                          isSpinnig = true;
+                        });
+                        await ref
+                            .read(rouletteDataProvider.notifier)
+                            .play(bet!);
+                      }
+                    }
+                  }
+                },
+                child: const Text(
+                  'SPIN',
+                  style: TextStyle(color: Colors.white),
+                ));
+          },
+        ),
       ],
     );
   }

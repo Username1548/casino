@@ -1,4 +1,4 @@
-import 'package:casino/feature/main/wdgets/custom_navigation_button.dart';
+import 'custom_navigation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
